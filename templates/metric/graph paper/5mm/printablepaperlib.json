@@ -1,0 +1,13 @@
+{
+    "template_name": "graph paper 5mm",
+    "page_sizes": [
+        "a4paper",
+        "a3paper",
+        "a2paper",
+        "a1paper"
+    ],
+    "orientations": [
+        "landscape",
+        "portrait"
+    ]
+}
