@@ -1,6 +1,6 @@
 #!/bin/bash
 
 echo "Creating paperlib.json"
-./create_din_a_paper_lib.py
+python3 ./create_din_a_paper_lib.py
 
 cat templates/paperlib.json
