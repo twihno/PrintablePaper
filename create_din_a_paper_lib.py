@@ -9,7 +9,7 @@ paperdict = {}
 
 # DIN A0 - DIN A6
 # all pages calculated in portrait orientation
-for i in range(0, 6):
+for i in range(0, 7):
     area_i = A0_AREA * (0.5**i)
 
     width_i = math.sqrt(area_i / math.sqrt(2))
