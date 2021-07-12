@@ -7,7 +7,7 @@ A0_AREA = 1e6  # mm
 
 paperdict = {}
 
-# DIN A0 - DIN 6
+# DIN A0 - DIN A6
 # all pages calculated in portrait orientation
 for i in range(0, 6):
     area_i = A0_AREA * (0.5**i)
