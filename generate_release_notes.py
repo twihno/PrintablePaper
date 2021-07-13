@@ -35,6 +35,7 @@ if __name__ == "__main__":
                                 printablepaperlib_dict = json.load(j)
                             f.write(
                                 "- {} (v{})\n".format(
-                                    printablepaperlib_dict["template_name"],
+                                    printablepaperlib_dict["template_name"].replace(
+                                        "_", "\\_"),
                                     printablepaperlib_dict["version"]
                                 ))

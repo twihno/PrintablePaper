@@ -12,8 +12,10 @@ print_return_value () {
 # Create pdf files
 echo -e "\n\e[32m\e[1m*** Run build.sh ***\e[0m"
 ./build.sh
+build_return=$?
 echo "--------------------"
-print_return_value $?
+echo "⬆ Run build.sh"
+print_return_value $build_return
 
 # Create release notes
 echo -e "\n\e[32m\e[1m*** Create release notes ***\e[0m"
@@ -32,4 +34,7 @@ print_return_value $?
 echo -e "\n\e[32m\e[1m*** Move zip file ***\e[0m"
 mv "$zipname" ..
 print_return_value $?
+echo "Current path: $PWD"
+echo "File: $zipname"
 cd ..
+echo "New path: $PWD"
