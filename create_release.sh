@@ -12,8 +12,10 @@ print_return_value () {
 # Create pdf files
 echo -e "\n\e[32m\e[1m*** Run build.sh ***\e[0m"
 ./build.sh
+build_return=$?
 echo "--------------------"
-print_return_value $?
+echo "⬆ Run build.sh"
+print_return_value $build_return
 
 # Create release notes
 echo -e "\n\e[32m\e[1m*** Create release notes ***\e[0m"
