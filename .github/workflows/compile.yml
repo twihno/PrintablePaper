@@ -25,10 +25,3 @@ jobs:
 
       - name: Run build.sh
         run: ./build.sh
-
-      # DEBUG
-      - name: Install tree
-        run: sudo apt-get install -y tree
-
-      - name: Tree
-        run: tree
