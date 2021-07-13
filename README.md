@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/twihno/PrintablePaper/ecca1f2433aea0c5a79ce1d6ab939e5b2c734267/branding/logo.svg" alt="PrintablePaper" width="500"/>
+<img src="https://raw.githubusercontent.com/twihno/PrintablePaper/main/branding/logo.svg" alt="PrintablePaper" width="500"/>
 
 
 [![Release](https://img.shields.io/github/v/release/twihno/PrintablePaper)](https://github.com/twihno/PrintablePaper/releases)
