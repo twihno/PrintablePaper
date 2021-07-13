@@ -25,7 +25,7 @@ jobs:
       - name: Run generate_release.sh
         id: generate_release
         run: |
-          ./create_release.sh ${{ github.ref }}
+          source ./create_release.sh ${{ github.ref }}
           echo "I am here"
           echo $zipname
           echo "::set-output name=ZIP_NAME::$zipname"
