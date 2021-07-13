@@ -1,5 +1,6 @@
 {
-    "template_name": "graph paper 5mm",
+    "template_name": "graph_paper_5mm",
+    "version": "1.0.0",
     "page_sizes": [
         [
             "a4paper",

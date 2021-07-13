@@ -8,3 +8,4 @@ templates/din_a/paperlib.json
 *.aux
 *.log
 *.pdf
+PrintablePaper_*.zip

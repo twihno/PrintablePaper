@@ -1,23 +1,30 @@
 #!/bin/bash
 
+print_return_value () {
+    if test $1 -eq 0; then
+        echo -e "\n  ✅ \e[32m\e[1mDONE\e[0m"
+    else
+        echo -e "\n  ❌ \e[31m\e[1mFAILED\e[0m"
+        exit 1
+    fi
+}
+
 if [ -d "output" ]
     then
-        echo "*** Removing existing output dir ***"
+        echo -e "\n\e[32m\e[1m*** Removing existing output dir ***\e[0m"
         rm -rf output
-        echo "  ✔ done"
+        print_return_value $?
 fi
 
-echo "*** Creating output dir ***"
+echo -e "\n\e[32m\e[1m*** Creating output dir ***\e[0m"
 mkdir output
 rsync -av -f"+ */" -f"- *" "templates/" "output"
-echo "  ✔ done"
+print_return_value $?
 
-echo ""
-echo "*** Creating metric paperlib.json ***"
-#python3 ./templates/metric/create_din_a_paper_lib.py
-echo "  ✔ done"
+echo -e "\n\e[32m\e[1m*** Creating metric paperlib.json ***\e[0m"
+python3 ./templates/din_a/create_din_a_paper_lib.py
+print_return_value $?
 
-echo ""
-echo "*** Generating pdfs ***"
+echo -e "\n\e[32m\e[1m*** Generating pdfs ***\e[0m"
 python3 ./generate_pdf.py
-echo "  ✔ done"
+print_return_value $?
