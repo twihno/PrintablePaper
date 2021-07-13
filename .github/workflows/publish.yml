@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  compile and publish:
+  compile_and_publish:
     name: Publish pdfs
     runs-on: ubuntu-latest
          
