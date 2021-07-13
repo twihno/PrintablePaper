@@ -32,4 +32,7 @@ print_return_value $?
 echo -e "\n\e[32m\e[1m*** Move zip file ***\e[0m"
 mv "$zipname" ..
 print_return_value $?
+echo "Current path: $PWD"
+echo "File: $zipname"
 cd ..
+echo "New path: $PWD"
