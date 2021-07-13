@@ -3,7 +3,7 @@
 output
 
 # Generated files
-*paperlib.json
+templates/din_a/paperlib.json
 *.latex
 *.aux
 *.log
