@@ -40,7 +40,8 @@ if __name__ == "__main__":
 
     # printablepaperlib specific code
 
-    for page_size, page_size_name in parameters["page_sizes"]:
+    for page_size in parameters["page_sizes"]:
+        page_size_name = paperlib[page_size]["displayname"]
         for orientation in parameters["orientations"]:
             filename = "{}_{}_{}.latex".format(
                 parameters["template_name"],

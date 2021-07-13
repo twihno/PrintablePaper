@@ -2,22 +2,10 @@
     "template_name": "graph_paper_5mm",
     "version": "1.0.0",
     "page_sizes": [
-        [
-            "a4paper",
-            "a4"
-        ],
-        [
-            "a3paper",
-            "a3"
-        ],
-        [
-            "a2paper",
-            "a2"
-        ],
-        [
-            "a1paper",
-            "a1"
-        ]
+        "a4paper",
+        "a3paper",
+        "a2paper",
+        "a1paper"
     ],
     "orientations": [
         "landscape",

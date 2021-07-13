@@ -26,7 +26,8 @@ for i in range(0, 7):
             "height": round(width_i, DIGITS),
             "width": round(height_i, DIGITS),
         },
-        "area": area_i
+        "area": area_i,
+        "displayname": "a" + str(i)
     }
 
 paperdict_json = json.dumps(paperdict, indent=4)
