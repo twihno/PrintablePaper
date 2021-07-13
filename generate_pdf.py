@@ -34,23 +34,17 @@ def generate_pdf_files():
     last_subdir = ""
 
     for subdir, dirs, files in os.walk(TEMPLATE_DIR):
-        #print("PATH", subdir, files, dirs)
-        #print("SUBDIR0", os.path.abspath(subdir))
         for file in files:
-            #print("SUBDIR1", os.path.abspath(subdir))
             ext = os.path.splitext(file)[-1].lower()
             if ext == '.latex':
                 if last_subdir != subdir:
                     last_subdir = subdir
                     os.chdir(os.path.abspath(subdir))
-                #print("SUBDIR2", os.path.abspath(subdir))
                 for i in range(0, 2):
                     return_value = os.system("xelatex -interaction=batchmode --halt-on-error \"" +
                               str(file) + "\"")
                     if return_value != 0:
                         sys.exit(1)
-                    #print("xelatex \"" +
-                    #str(file) + "\"")
 
 
 def move_pdf_files():

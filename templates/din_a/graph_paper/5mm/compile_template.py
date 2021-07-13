@@ -42,7 +42,6 @@ if __name__ == "__main__":
 
     for page_size, page_size_name in parameters["page_sizes"]:
         for orientation in parameters["orientations"]:
-            #print(page_size, page_size_name, orientation)
             filename = "{}_{}_{}.latex".format(
                 parameters["template_name"],
                 page_size_name,

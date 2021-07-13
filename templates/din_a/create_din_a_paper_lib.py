@@ -1,4 +1,4 @@
-"""Creates the metric paperlib.json"""
+"""Creates the din a paperlib.json"""
 
 import json
 import math
