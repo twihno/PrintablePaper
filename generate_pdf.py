@@ -45,7 +45,7 @@ def generate_pdf_files():
                     os.chdir(os.path.abspath(subdir))
                 #print("SUBDIR2", os.path.abspath(subdir))
                 for i in range(0, 2):
-                    return_value = os.system("xelatex \"" +
+                    return_value = os.system("xelatex -interaction=batchmode --halt-on-error \"" +
                               str(file) + "\"")
                     if return_value != 0:
                         sys.exit(1)
@@ -72,21 +72,21 @@ if __name__ == "__main__":
 
     try:
 
-        print("Cleaning templates folder")
+        print("\nCleaning templates folder")
         clean_templates()
 
-        print("Generating latex files")
+        print("\nGenerating latex files")
         generate_latex_files()
 
         os.chdir(topleveldir)
-        print("Generating pdf files")
+        print("\nGenerating pdf files")
         generate_pdf_files()
 
         os.chdir(topleveldir)
-        print("Moving pdf files")
+        print("\nMoving pdf files")
         move_pdf_files()
 
-        print("Cleaning templates folder")
+        print("\nCleaning templates folder")
         clean_templates()
 
     except:
