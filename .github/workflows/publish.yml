@@ -26,9 +26,10 @@ jobs:
         run: sudo apt-get install -y zip
 
       - name: Run generate_release.sh
+        id: generate_release
         run: |
           ./create_release.sh ${{ github.ref }}
-          echo "::set-output name=RELEASE_BODY::$zipname"
+          echo "::set-output name=ZIP_NAME::$zipname"
 
       # This step reads a file from repo and use it for body of the release
       # This works on any self-hosted runner OS
@@ -47,7 +48,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
-          file: PrintablePaper_${${{ github.ref }}//$'/'/'_'}.zip
-          asset_name: PrintablePaper_${{ github.ref }}.zip
+          file: ${{ steps.generate_release.outputs.ZIP_NAME }}
+          asset_name: ${{ steps.generate_release.outputs.ZIP_NAME }}
           body: |
             ${{ steps.read_release.outputs.RELEASE_BODY }}  # <--- Use environment variables that was created earlier
