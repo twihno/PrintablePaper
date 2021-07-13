@@ -1,2 +1,10 @@
+# Directories
 .vscode
-templates/paperlib.json
+output
+
+# Generated files
+*paperlib.json
+*.latex
+*.aux
+*.log
+*.pdf
