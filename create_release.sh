@@ -22,9 +22,14 @@ print_return_value $?
 
 # Create zip file
 echo -e "\n\e[32m\e[1m*** Create zip file ***\e[0m"
-zipname="PrintablePaper_$1.zip"
 cd output
+zipname="PrintablePaper_$1.zip"
+zipname="${zipname//$'/'/'_'}" # Remove / from zipname
 zip -r $zipname *
-mv $zipname ..
-cd ..
 print_return_value $?
+
+# Move zip file
+echo -e "\n\e[32m\e[1m*** Move zip file ***\e[0m"
+mv "$zipname" ..
+print_return_value $?
+cd ..
