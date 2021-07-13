@@ -26,15 +26,17 @@ jobs:
         run: sudo apt-get install -y zip
 
       - name: Run generate_release.sh
-        run: ./create_release.sh ${{ github.ref }}
+        run: |
+          ./create_release.sh ${{ github.ref }}
+          echo "::set-output name=RELEASE_BODY::$zipname"
 
       # This step reads a file from repo and use it for body of the release
       # This works on any self-hosted runner OS
-      - name: Read release.md and use it as a body of new release
+      - name: Read README.md and use it as a body of new release
         id: read_release
         shell: bash
         run: |
-          r=$(cat output/README.md)                         # <--- Read release.md (Provide correct path as per your repo)
+          r=$(cat output/README.md)                         # <--- Read README.md
           r="${r//'%'/'%25'}"                               # Multiline escape sequences for %
           r="${r//$'\n'/'%0A'}"                             # Multiline escape sequences for '\n'
           r="${r//$'\r'/'%0D'}"                             # Multiline escape sequences for '\r'
@@ -45,7 +47,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
-          file: PrintablePaper_${{ github.ref }}.zip
+          file: PrintablePaper_${${{ github.ref }}//$'/'/'_'}.zip
           asset_name: PrintablePaper_${{ github.ref }}.zip
           body: |
             ${{ steps.read_release.outputs.RELEASE_BODY }}  # <--- Use environment variables that was created earlier
