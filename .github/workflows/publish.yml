@@ -7,7 +7,7 @@ jobs:
 
 
   build:
-    name: Publish binaries
+    name: Publish pdfs
     runs-on: ubuntu-latest
          
     steps:
@@ -22,13 +22,11 @@ jobs:
       - name: Install LaTex
         run: sudo apt-get install -y texlive-base texlive-xetex
 
-      - name: Install zip command
-        run: sudo apt-get install -y zip
-
       - name: Run generate_release.sh
         id: generate_release
         run: |
           ./create_release.sh ${{ github.ref }}
+          echo $zipname
           echo "::set-output name=ZIP_NAME::$zipname"
 
       # This step reads a file from repo and use it for body of the release
