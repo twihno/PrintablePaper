@@ -22,7 +22,7 @@ if __name__ == "__main__":
         f.write("# Included templates\n")
 
         for lib in paperlibgroups:
-            f.write("\n## {}\n{}\n".format(
+            f.write("\n## {}\n{}\n\n".format(
                 lib[0],
                 lib[2]
             ))
