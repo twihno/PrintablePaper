@@ -31,5 +31,5 @@ for i in range(0, 7):
 
 paperdict_json = json.dumps(paperdict, indent=4)
 
-with open("./templates/metric/paperlib.json", "w") as paperlibfile:
+with open("./templates/din_a/paperlib.json", "w") as paperlibfile:
     paperlibfile.write(paperdict_json)
