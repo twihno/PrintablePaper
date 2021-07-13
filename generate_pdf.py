@@ -1,6 +1,8 @@
 """"Generates the latex files, the pdfs and cleans the directories"""
 
 import os
+import traceback
+import sys
 import shutil
 
 TEMPLATE_DIR = 'templates'
@@ -21,7 +23,10 @@ def generate_latex_files():
     for subdir, dirs, files in os.walk(TEMPLATE_DIR):
         for file in files:
             if file == "compile_template.py":
-                os.system("python3 \"" + os.path.join(subdir, file) + "\"")
+                return_value = os.system(
+                    "python3 \"" + os.path.join(subdir, file) + "\"")
+                if return_value != 0:
+                    sys.exit(1)
 
 
 def generate_pdf_files():
@@ -35,13 +40,15 @@ def generate_pdf_files():
             #print("SUBDIR1", os.path.abspath(subdir))
             ext = os.path.splitext(file)[-1].lower()
             if ext == '.latex':
-                if(last_subdir != subdir):
+                if last_subdir != subdir:
                     last_subdir = subdir
                     os.chdir(os.path.abspath(subdir))
                 #print("SUBDIR2", os.path.abspath(subdir))
                 for i in range(0, 2):
-                    os.system("xelatex \"" +
+                    return_value = os.system("xelatex \"" +
                               str(file) + "\"")
+                    if return_value != 0:
+                        sys.exit(1)
                     #print("xelatex \"" +
                     #str(file) + "\"")
 
@@ -63,19 +70,25 @@ def move_pdf_files():
 if __name__ == "__main__":
     topleveldir = os.getcwd()
 
-    print("Cleaning templates folder")
-    clean_templates()
+    try:
 
-    print("Generating latex files")
-    generate_latex_files()
+        print("Cleaning templates folder")
+        clean_templates()
 
-    os.chdir(topleveldir)
-    print("Generating pdf files")
-    generate_pdf_files()
+        print("Generating latex files")
+        generate_latex_files()
 
-    os.chdir(topleveldir)
-    print("Moving pdf files")
-    move_pdf_files()
+        os.chdir(topleveldir)
+        print("Generating pdf files")
+        generate_pdf_files()
 
-    print("Cleaning templates folder")
-    clean_templates()
+        os.chdir(topleveldir)
+        print("Moving pdf files")
+        move_pdf_files()
+
+        print("Cleaning templates folder")
+        clean_templates()
+
+    except:
+        traceback.print_exc()
+        sys.exit(1)

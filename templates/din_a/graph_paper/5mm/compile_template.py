@@ -2,6 +2,8 @@
 
 import json
 import os
+import traceback
+import sys
 from jinja2 import Environment, FileSystemLoader
 
 if __name__ == "__main__":
@@ -12,16 +14,24 @@ if __name__ == "__main__":
     os.chdir(dirname)
 
     # Load printablepaperlib parameters
-    with open('./printablepaperlib.json') as f:
-        parameters = json.load(f)
+    try:
+        with open('./printablepaperlib.json') as f:
+            parameters = json.load(f)
+    except FileNotFoundError:
+        traceback.print_exc()
+        sys.exit(1)
 
     # Load paperlib
     template_subdir = str(dirname).find(
         "/", str(dirname).find("templates/")+10)+1
     paperlib_path = str(dirname)[0:template_subdir] + "paperlib.json"
 
-    with open(paperlib_path) as f:
-        paperlib = json.load(f)
+    try:
+        with open(paperlib_path) as f:
+            paperlib = json.load(f)
+    except FileNotFoundError:
+        traceback.print_exc()
+        sys.exit(1)
 
     # Load template
 
@@ -40,6 +50,8 @@ if __name__ == "__main__":
 
             with open(filename, "w") as f:
                 f.write(template.render(
-                    paperformat=page_size,
-                    paperorientation=orientation,
+                    paperformat = page_size,
+                    paperorientation = orientation,
+                    horizontal_5mm_count = round(paperlib[page_size][orientation]["width"]),
+                    vertical_5mm_count = round(paperlib[page_size][orientation]["height"]),
                 ))
