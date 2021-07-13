@@ -2,6 +2,7 @@
 
 import json
 import os
+from datetime import date
 
 TEMPLATE_DIR = "templates"
 
@@ -19,6 +20,7 @@ if __name__ == "__main__":
     paperlibgroups.sort()
 
     with open("./output/README.md", "w") as f:
+        f.write("Version {}\n\n---\n\n".format(date.today().strftime("%Y-%m-%d")))
         f.write("# Included templates\n")
 
         for lib in paperlibgroups:
