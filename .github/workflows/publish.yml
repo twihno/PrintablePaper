@@ -1,12 +1,17 @@
 name: Publish
 
 on:
+  push:
+    branches: 
+      - master
+  pull:
+    branches: 
+      - master
   workflow_dispatch:
 
 jobs:
 
-
-  build:
+  compile and publish:
     name: Publish pdfs
     runs-on: ubuntu-latest
          
@@ -22,10 +27,14 @@ jobs:
       - name: Install LaTex
         run: sudo apt-get install -y texlive-base texlive-xetex
 
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
       - name: Run generate_release.sh
         id: generate_release
         run: |
-          source ./create_release.sh ${{ github.ref }}
+          source ./create_release.sh ${{ steps.date.outputs.date }}
           echo "::set-output name=ZIP_NAME::$zipname"
 
       # This step reads a file from repo and use it for body of the release
@@ -44,8 +53,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
+          tag: ${{ steps.date.outputs.date }}
           file: ${{ steps.generate_release.outputs.ZIP_NAME }}
-          asset_name: ${{ steps.generate_release.outputs.ZIP_NAME }}
+          release_name: v${{ steps.date.outputs.date }}
           body: |
             ${{ steps.read_release.outputs.RELEASE_BODY }}  # <--- Use environment variables that was created earlier
