@@ -1,5 +1,5 @@
 {
-    "template_name": "graph_paper_5mm",
+    "template_name": "grid_black_10mm",
     "version": "1.0.0",
     "page_sizes": [
         "a4paper",
@@ -8,7 +8,7 @@
         "a1paper"
     ],
     "orientations": [
-        "landscape",
-        "portrait"
+        "portrait",
+        "landscape"
     ]
 }
