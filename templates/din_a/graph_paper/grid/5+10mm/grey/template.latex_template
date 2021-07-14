@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[{{ paperformat }}, {{ paperorientation }}]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\newcommand*{\largelinewidth}{0.3mm}
+\newcommand*{\smalllinewidth}{0.1mm}
+
+\begin{document}
+\pagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+
+\definecolor{line_color}{RGB}{128,128,128}
+
+% horizontal lines 5mm
+\foreach \i in {5,15,...,{{ vertical_5mm_count }}}{
+\draw[line_color, line width=\smalllinewidth] ($(current page.north west)+(0,-\i mm)$) -- ($(current page.north east)+(0,-\i mm)$);}
+
+% vertical lines 5mm
+\foreach \i in {5,15,...,{{ horizontal_5mm_count }}}{
+\draw[line_color, line width=\smalllinewidth] ($(current page.north west)+(\i mm,0)$) -- ($(current page.south west)+(\i mm,0)$);}
+
+% horizontal lines 10mm
+\foreach \i in {10,20,...,{{ vertical_10mm_count }}}{
+\draw[line_color, line width=\largelinewidth] ($(current page.north west)+(0,-\i mm)$) -- ($(current page.north east)+(0,-\i mm)$);}
+
+% vertical lines 10mm
+\foreach \i in {10,20,...,{{ horizontal_10mm_count }}}{
+\draw[line_color, line width=\largelinewidth] ($(current page.north west)+(\i mm,0)$) -- ($(current page.south west)+(\i mm,0)$);}
+
+
+\end{tikzpicture}
+
+\end{document}
