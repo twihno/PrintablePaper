@@ -55,11 +55,9 @@ if __name__ == "__main__":
                 ))
 
                 for subdir, dirs, files in os.walk(TEMPLATE_DIR):
-                    print(subdir, dirs, files)
                     for file in files:
                         if file == "printablepaperlib.json":
                             if subdir.startswith(lib[1]+"/") and subdir.startswith(cat[1]+"/"):
-                                print(subdir)
                                 with open(os.path.join(subdir, file), "r") as j:
                                     printablepaperlib_dict = json.load(j)
                                 f.write(
