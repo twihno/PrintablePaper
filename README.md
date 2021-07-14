@@ -36,9 +36,25 @@ It should run on every Linux distribution with XeLaTex and Python 3 support.
 
 ### Project structure
 
+```
+..
+├ various files and folders (self-explaining or described below)
+└ templates
+  └ groups (by paper size, e.g. DIN A)
+    ├ paperlibgroup.json (metadata)
+    └ categories (by template category, e.g. graph paper or lined paper)
+      ├ paperlibcategory.json (metadata)
+      └ template
+        └ template_variations (optional)
+          └ template_color_variations (optional)
+            ├ compile_template.py
+            ├ printablepaperlib.json
+            └ template.latex_template
+```
+
 Every template needs its own folder and three files:
 
-- ```compile_template.py``` (this file generates the differnet latex files for the various page sizes)
+- ```compile_template.py``` (this file generates the different latex files for the various page sizes)
 - ```printablepaperlib.json``` (this file contains the name, the version and the supported paper sizes and orientations of the template)
 - ```template.latex_template``` (this file contains the the latex (jinja template) file used to generate the pdf files)
 
