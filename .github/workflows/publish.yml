@@ -53,4 +53,4 @@ jobs:
           file: ${{ steps.generate_release.outputs.ZIP_NAME }}
           release_name: v${{ steps.date.outputs.date }}
           body: |
-            ${{ steps.read_release.outputs.RELEASE_BODY }}  # <--- Use environment variables that was created earlier
+            ${{ steps.read_release.outputs.RELEASE_BODY }}
