@@ -11,12 +11,12 @@
 
 \definecolor{line_color}{RGB}{128,128,128}
 
-% horizontal lines 5mm
-\foreach \i in {10,20,...,{{ vertical_5mm_count }}}{
+% horizontal lines 10mm
+\foreach \i in {10,20,...,{{ vertical_10mm_count }}}{
 \draw[line_color, line width=\largelinewidth] ($(current page.north west)+(0,-\i mm)$) -- ($(current page.north east)+(0,-\i mm)$);}
 
-% vertical lines 5mm
-\foreach \i in {10,20,...,{{ horizontal_5mm_count }}}{
+% vertical lines 10mm
+\foreach \i in {10,20,...,{{ horizontal_10mm_count }}}{
 \draw[line_color, line width=\largelinewidth] ($(current page.north west)+(\i mm,0)$) -- ($(current page.south west)+(\i mm,0)$);}
 
 \end{tikzpicture}

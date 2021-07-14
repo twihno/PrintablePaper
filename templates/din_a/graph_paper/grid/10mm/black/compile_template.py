@@ -68,6 +68,6 @@ if __name__ == "__main__":
                 f.write(template.render(
                     paperformat=page_size,
                     paperorientation=orientation,
-                    horizontal_5mm_count=horizonzal_count,
-                    vertical_5mm_count=vertical_count,
+                    horizontal_10mm_count=horizonzal_count,
+                    vertical_10mm_count=vertical_count,
                 ))
