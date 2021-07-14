@@ -29,7 +29,7 @@ The pdf files are auto-generated and [released]((https://github.com/twihno/Print
 
 ## Contributing
 
-Thank you for your interest! Everyone is invited to add their own templates.
+Thank you for your interest! Everyone is invited to add their own templates or improve existing templates.
 
 The code was developed and tested on Ubuntu.
 It should run on every Linux distribution with XeLaTex and Python 3 support.
