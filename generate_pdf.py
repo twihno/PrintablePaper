@@ -7,6 +7,7 @@ import shutil
 
 TEMPLATE_DIR = 'templates'
 RM_EXTENSIONS = ['.aux', '.latex', '.log', '.pdf']
+TOPLEVELDIR = ''
 
 
 def clean_templates():
@@ -42,9 +43,10 @@ def generate_pdf_files():
                     os.chdir(os.path.abspath(subdir))
                 for i in range(0, 2):
                     return_value = os.system("xelatex -interaction=batchmode --halt-on-error \"" +
-                              str(file) + "\"")
+                                             str(file) + "\"")
                     if return_value != 0:
                         sys.exit(1)
+        os.chdir(TOPLEVELDIR)
 
 
 def move_pdf_files():
@@ -62,7 +64,7 @@ def move_pdf_files():
 
 
 if __name__ == "__main__":
-    topleveldir = os.getcwd()
+    TOPLEVELDIR = os.getcwd()
 
     try:
 
@@ -72,11 +74,11 @@ if __name__ == "__main__":
         print("\nGenerating latex files")
         generate_latex_files()
 
-        os.chdir(topleveldir)
+        os.chdir(TOPLEVELDIR)
         print("\nGenerating pdf files")
         generate_pdf_files()
 
-        os.chdir(topleveldir)
+        os.chdir(TOPLEVELDIR)
         print("\nMoving pdf files")
         move_pdf_files()
 
