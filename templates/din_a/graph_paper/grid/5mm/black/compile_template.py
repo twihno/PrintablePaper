@@ -22,12 +22,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     # Load paperlib
-    template_subdir = str(dirname).find(
+    TEMPLATE_SUBDIR = str(dirname).find(
         "/", str(dirname).find("templates/")+10)+1
-    paperlib_path = str(dirname)[0:template_subdir] + "paperlib.json"
+    PAPERLIB_PATH = str(dirname)[0:TEMPLATE_SUBDIR] + "paperlib.json"
 
     try:
-        with open(paperlib_path) as f:
+        with open(PAPERLIB_PATH) as f:
             paperlib = json.load(f)
     except FileNotFoundError:
         traceback.print_exc()
@@ -43,15 +43,31 @@ if __name__ == "__main__":
     for page_size in parameters["page_sizes"]:
         page_size_name = paperlib[page_size]["displayname"]
         for orientation in parameters["orientations"]:
-            filename = "{}_{}_{}.latex".format(
+            FILENAME = "{}_{}_{}.latex".format(
                 parameters["template_name"],
                 page_size_name,
                 orientation)
 
-            with open(filename, "w") as f:
+            horizonzal_count = int(
+                paperlib[page_size][orientation]["width"])-int(
+                paperlib[page_size][orientation]["width"] % 5)
+
+            # Remove lines on the page borders
+            if horizonzal_count == round(paperlib[page_size][orientation]["width"]):
+                horizonzal_count -= 5
+
+            vertical_count = int(
+                paperlib[page_size][orientation]["height"])-int(
+                paperlib[page_size][orientation]["height"] % 5)
+
+            # Remove lines on the page borders
+            if vertical_count == round(paperlib[page_size][orientation]["height"]):
+                vertical_count -= 5
+
+            with open(FILENAME, "w") as f:
                 f.write(template.render(
-                    paperformat = page_size,
-                    paperorientation = orientation,
-                    horizontal_5mm_count = round(paperlib[page_size][orientation]["width"]),
-                    vertical_5mm_count = round(paperlib[page_size][orientation]["height"]),
+                    paperformat=page_size,
+                    paperorientation=orientation,
+                    horizontal_5mm_count=horizonzal_count,
+                    vertical_5mm_count=vertical_count,
                 ))
