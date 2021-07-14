@@ -1,5 +1,5 @@
 {
-    "template_name": "grid_black_5+10mm",
+    "template_name": "dashed_grid_black_5+10mm",
     "version": "1.0.0",
     "page_sizes": [
         "a4paper",
