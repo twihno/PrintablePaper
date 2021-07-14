@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage[{{ paperformat }}, {{ paperorientation }}]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\newcommand*{\largelinewidth}{0.3mm}
+
+\begin{document}
+\pagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+
+% horizontal lines 5mm
+\foreach \i in {10,20,...,{{ vertical_5mm_count }}}{
+\draw[black, line width=\largelinewidth] ($(current page.north west)+(0,-\i mm)$) -- ($(current page.north east)+(0,-\i mm)$);}
+
+% vertical lines 5mm
+\foreach \i in {10,20,...,{{ horizontal_5mm_count }}}{
+\draw[black, line width=\largelinewidth] ($(current page.north west)+(\i mm,0)$) -- ($(current page.south west)+(\i mm,0)$);}
+
+\end{tikzpicture}
+
+\end{document}
